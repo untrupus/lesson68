@@ -11,7 +11,6 @@ import {
     FETCH_TASKS_ERROR,
     FETCH_TASKS_REQUEST,
     FETCH_TASKS_SUCCESS,
-    ADD_TASK,
     POST_TASKS_SUCCESS
 } from "./actionTypes";
 
@@ -98,9 +97,21 @@ export const postTask = (value) => {
         dispatch(fetchTasksRequest());
         try {
             if (value !== '') {
-                const response = await axios.post("/tasks.json", {text: value});
-                dispatch(postTaskSuccess(response.data));
+                await axios.post("/tasks.json", {text: value});
+                dispatch(postTaskSuccess());
             }
+        } catch(e) {
+            dispatch(fetchTasksError(e));
+        }
+    };
+};
+
+export const removeTask = (value) => {
+    return async dispatch => {
+        dispatch(fetchTasksRequest());
+        try {
+                await axios.delete("/tasks/" + value + ".json");
+                dispatch(postTaskSuccess());
         } catch(e) {
             dispatch(fetchTasksError(e));
         }

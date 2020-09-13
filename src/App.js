@@ -6,7 +6,7 @@ import ToDo from "./containers/ToDo/ToDo";
 function App() {
   return (
       <div className="App">
-        {/*<Counter/>*/}
+        <Counter/>
         <ToDo/>
       </div>
   );

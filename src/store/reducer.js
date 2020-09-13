@@ -10,7 +10,6 @@ import {
     FETCH_TASKS_ERROR,
     FETCH_TASKS_REQUEST,
     FETCH_TASKS_SUCCESS,
-    ADD_TASK,
     POST_TASKS_SUCCESS
 } from "./actionTypes";
 
