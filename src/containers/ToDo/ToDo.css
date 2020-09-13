@@ -1,0 +1,40 @@
+.container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tasks {
+    text-align: left;
+}
+
+.task {
+    justify-content: space-between;
+    display: flex;
+    border: 1px solid black;
+    padding: 0 5px;
+    margin-top: 20px;
+    border-radius: 3px;
+}
+
+.field {
+    padding: 5px;
+    width: 200px;
+}
+
+.btnRemove {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: darkgray;
+}
+
+.btnRemove:hover {
+    color: black;
+}
