@@ -50,8 +50,8 @@ const fetchTasksError = error => {
     return {type: FETCH_TASKS_ERROR, error};
 };
 
-const postTaskSuccess = () => {
-    return {type: POST_TASKS_SUCCESS};
+const postTaskSuccess = (value) => {
+    return {type: POST_TASKS_SUCCESS, value};
 };
 
 
@@ -72,8 +72,11 @@ export const changeCounter = value => {
     return async dispatch => {
         dispatch(fetchCounterRequest());
         try {
-            await axios.put("/counter.json", value);
+            if (value !== 0) {
+                await axios.put("/counter.json", value);
+            }
             dispatch(changeCounterSuccess());
+
         } catch(e) {
             dispatch(fetchCounterError(e));
         }
@@ -98,7 +101,7 @@ export const postTask = (value) => {
         try {
             if (value !== '') {
                 await axios.post("/tasks.json", {text: value});
-                dispatch(postTaskSuccess());
+                dispatch(postTaskSuccess(value));
             }
         } catch(e) {
             dispatch(fetchTasksError(e));

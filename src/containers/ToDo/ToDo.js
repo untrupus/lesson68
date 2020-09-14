@@ -49,7 +49,8 @@ const ToDo = () => {
                 <button
                     type="button"
                     onClick={() => addTaskHandler(text)}
-                    className="btn">Add</button>
+                    className="btn">Add
+                </button>
             </div>
             {taskList}
         </div>

@@ -49,13 +49,6 @@ const reducer = (state = initialState, action) => {
             return {...state, tasksLoading: false, tasksError: action.error};
         case POST_TASKS_SUCCESS:
             return {...state, tasksLoading: false};
-        // case ADD_TASK:
-        //     return {...state, task: action.text};
-
-
-
-
-
         default:
             return state;
     }
