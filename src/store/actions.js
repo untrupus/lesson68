@@ -55,14 +55,13 @@ const postTaskSuccess = (value) => {
 };
 
 
-
 export const fetchCounter = () => {
     return async dispatch => {
         dispatch(fetchCounterRequest());
         try {
             const response = await axios.get("/counter.json");
             dispatch(fetchCounterSuccess(response.data));
-        } catch(e) {
+        } catch (e) {
             dispatch(fetchCounterError(e));
         }
     };
@@ -77,7 +76,7 @@ export const changeCounter = value => {
             }
             dispatch(changeCounterSuccess());
 
-        } catch(e) {
+        } catch (e) {
             dispatch(fetchCounterError(e));
         }
     };
@@ -89,7 +88,7 @@ export const fetchTasks = () => {
         try {
             const response = await axios.get("/tasks.json");
             dispatch(fetchTasksSuccess(response.data));
-        } catch(e) {
+        } catch (e) {
             dispatch(fetchTasksError(e));
         }
     };
@@ -102,8 +101,9 @@ export const postTask = (value) => {
             if (value !== '') {
                 await axios.post("/tasks.json", {text: value});
                 dispatch(postTaskSuccess(value));
+                dispatch(fetchTasks());
             }
-        } catch(e) {
+        } catch (e) {
             dispatch(fetchTasksError(e));
         }
     };
@@ -113,9 +113,10 @@ export const removeTask = (value) => {
     return async dispatch => {
         dispatch(fetchTasksRequest());
         try {
-                await axios.delete("/tasks/" + value + ".json");
-                dispatch(postTaskSuccess());
-        } catch(e) {
+            await axios.delete("/tasks/" + value + ".json");
+            dispatch(postTaskSuccess());
+            dispatch(fetchTasks());
+        } catch (e) {
             dispatch(fetchTasksError(e));
         }
     };
